@@ -1,4 +1,3 @@
-import 'package:better_do/providers/theme_setting.dart';
 import 'package:better_do/view/settings/notifications_settings_widget.dart';
 import 'package:better_do/view/settings/theme_setting_widget.dart';
 import 'package:flutter/material.dart';

@@ -1,3 +1,4 @@
+import 'package:better_do/providers/local_notifications.dart';
 import 'package:better_do/providers/theme_setting.dart';
 import 'package:better_do/view/settings/settings_page.dart';
 import 'package:better_do/view/tags/tags_page.dart';
@@ -56,15 +57,22 @@ Future<dynamic> addNewTask(BuildContext context) async {
 
 enum HomePageTab { tasks, todo, add, tags, settings }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends ConsumerStatefulWidget {
   const MyHomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  ConsumerState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends ConsumerState<MyHomePage> {
+
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    ref.read(localNotificationsServiceProvider);
+  }
 
   @override
   Widget build(BuildContext context) {
