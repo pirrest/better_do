@@ -79,6 +79,7 @@ class _DueDateFormFieldState extends State<DueDateFormField> {
       firstDate: now,
       lastDate: DateTime(now.year + 10),
     );
+    widget.onSelected(_date);
     setState(() {
       _enabled = _date != null;
     });

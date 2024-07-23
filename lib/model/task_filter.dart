@@ -12,6 +12,7 @@ class TaskFilter with _$TaskFilter {
   const factory TaskFilter(
   {
     required String id,
+    required String name,
     Duration? timeLeft,
     String? textQuery,
     Set<Tag>? includedTags,

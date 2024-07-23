@@ -44,6 +44,16 @@ class MyApp extends ConsumerWidget {
   }
 }
 
+Future<dynamic> addNewTask(BuildContext context) async {
+  return await showCupertinoModalPopup(
+    useRootNavigator: true,
+    context: context,
+    builder: (context) {
+      return const TaskPage();
+    },
+  );
+}
+
 enum HomePageTab { tasks, todo, add, tags, settings }
 
 class MyHomePage extends StatefulWidget {
@@ -73,12 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onDestinationSelected: (value) {
           setState(() {
             if (value == HomePageTab.add.index) {
-              showCupertinoModalPopup(
-                context: context,
-                builder: (context) {
-                  return const TaskPage();
-                },
-              );
+              addNewTask(context);
             } else {
               _selectedIndex = value;
             }

@@ -1,4 +1,6 @@
 import 'package:better_do/providers/theme_setting.dart';
+import 'package:better_do/view/settings/notifications_settings_widget.dart';
+import 'package:better_do/view/settings/theme_setting_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -15,43 +17,12 @@ class SettingsPage extends ConsumerWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              ThemeSettingWidget()
+              ThemeSettingWidget(),
+              SizedBox(height: 16),
+              NotificationsSettingsWidget(),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class ThemeSettingWidget extends ConsumerWidget {
-  const ThemeSettingWidget({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final selectedTheme = ref.watch(rpThemeSettingProvider);
-    return ListTile(
-      title: const Text("Theme"),
-      trailing: ToggleButtons(
-        borderRadius: BorderRadius.circular(16),
-        onPressed: (index) {
-          ref.read(rpThemeSettingProvider.notifier).set(ThemeMode.values[index]);
-        },
-        isSelected: [
-          selectedTheme.index == 0,
-          selectedTheme.index == 1,
-          selectedTheme.index == 2
-        ],
-        children: const [Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Text("System"),
-        ), Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Text("Light"),
-        ), Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Text("Dark"),
-        )],
       ),
     );
   }

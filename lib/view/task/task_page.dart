@@ -22,15 +22,6 @@ class TaskPage extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(isNewTask ? "Add task" : "Edit task"),
-        // automaticallyImplyLeading: false,
-        // actions: [
-        //   IconButton(
-        //     onPressed: () {
-        //       Navigator.of(context).pop();
-        //     },
-        //     icon: const Icon(Icons.close),
-        //   )
-        // ],
       ),
       body: SafeArea(
         child: Form(
@@ -51,6 +42,7 @@ class TaskPage extends HookConsumerWidget {
                           curve: Curves.easeInOut,
                           child: TextFormField(
                             autofocus: true,
+                            maxLines: null,
                             focusNode: focusNode,
                             onTapOutside: (event) {
                               focusNode.unfocus();

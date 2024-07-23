@@ -24,6 +24,7 @@ mixin _$Task {
   String get text => throw _privateConstructorUsedError;
   DateTime get createdDate => throw _privateConstructorUsedError;
   DateTime? get dueDate => throw _privateConstructorUsedError;
+  DateTime? get doneDate => throw _privateConstructorUsedError;
   List<Tag> get tags => throw _privateConstructorUsedError;
   List<String> get files => throw _privateConstructorUsedError;
   int get priority => throw _privateConstructorUsedError;
@@ -48,6 +49,7 @@ abstract class $TaskCopyWith<$Res> {
       String text,
       DateTime createdDate,
       DateTime? dueDate,
+      DateTime? doneDate,
       List<Tag> tags,
       List<String> files,
       int priority,
@@ -74,6 +76,7 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
     Object? text = null,
     Object? createdDate = null,
     Object? dueDate = freezed,
+    Object? doneDate = freezed,
     Object? tags = null,
     Object? files = null,
     Object? priority = null,
@@ -98,6 +101,10 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
       dueDate: freezed == dueDate
           ? _value.dueDate
           : dueDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      doneDate: freezed == doneDate
+          ? _value.doneDate
+          : doneDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       tags: null == tags
           ? _value.tags
@@ -143,6 +150,7 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
       String text,
       DateTime createdDate,
       DateTime? dueDate,
+      DateTime? doneDate,
       List<Tag> tags,
       List<String> files,
       int priority,
@@ -166,6 +174,7 @@ class __$$TaskImplCopyWithImpl<$Res>
     Object? text = null,
     Object? createdDate = null,
     Object? dueDate = freezed,
+    Object? doneDate = freezed,
     Object? tags = null,
     Object? files = null,
     Object? priority = null,
@@ -190,6 +199,10 @@ class __$$TaskImplCopyWithImpl<$Res>
       dueDate: freezed == dueDate
           ? _value.dueDate
           : dueDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      doneDate: freezed == doneDate
+          ? _value.doneDate
+          : doneDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       tags: null == tags
           ? _value._tags
@@ -231,6 +244,7 @@ class _$TaskImpl implements _Task {
       required this.text,
       required this.createdDate,
       this.dueDate,
+      this.doneDate,
       final List<Tag> tags = const [],
       final List<String> files = const [],
       this.priority = 5,
@@ -253,6 +267,8 @@ class _$TaskImpl implements _Task {
   final DateTime createdDate;
   @override
   final DateTime? dueDate;
+  @override
+  final DateTime? doneDate;
   final List<Tag> _tags;
   @override
   @JsonKey()
@@ -289,7 +305,7 @@ class _$TaskImpl implements _Task {
 
   @override
   String toString() {
-    return 'Task(id: $id, text: $text, createdDate: $createdDate, dueDate: $dueDate, tags: $tags, files: $files, priority: $priority, timeEstimate: $timeEstimate, isDone: $isDone, isFullDay: $isFullDay, isLocal: $isLocal)';
+    return 'Task(id: $id, text: $text, createdDate: $createdDate, dueDate: $dueDate, doneDate: $doneDate, tags: $tags, files: $files, priority: $priority, timeEstimate: $timeEstimate, isDone: $isDone, isFullDay: $isFullDay, isLocal: $isLocal)';
   }
 
   @override
@@ -302,6 +318,8 @@ class _$TaskImpl implements _Task {
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate) &&
             (identical(other.dueDate, dueDate) || other.dueDate == dueDate) &&
+            (identical(other.doneDate, doneDate) ||
+                other.doneDate == doneDate) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality().equals(other._files, _files) &&
             (identical(other.priority, priority) ||
@@ -322,6 +340,7 @@ class _$TaskImpl implements _Task {
       text,
       createdDate,
       dueDate,
+      doneDate,
       const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(_files),
       priority,
@@ -350,6 +369,7 @@ abstract class _Task implements Task {
       required final String text,
       required final DateTime createdDate,
       final DateTime? dueDate,
+      final DateTime? doneDate,
       final List<Tag> tags,
       final List<String> files,
       final int priority,
@@ -369,6 +389,8 @@ abstract class _Task implements Task {
   DateTime get createdDate;
   @override
   DateTime? get dueDate;
+  @override
+  DateTime? get doneDate;
   @override
   List<Tag> get tags;
   @override

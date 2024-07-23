@@ -52,4 +52,20 @@ class Tasks extends _$Tasks {
     state = tasks;
     await saveTasks();
   }
+
+  Future<void> reorder(int oldIndex, int newIndex) async {
+    print('Tasks.reorder oldIndex: ${oldIndex}');
+    print('Tasks.reorder newIndex: ${newIndex}');
+    if (oldIndex < newIndex) {
+      newIndex -= 1;
+    print('Tasks.reorder newIndex: ${newIndex}');
+    }
+    final tasks = [...state];
+    final task = tasks.removeAt(oldIndex);
+    print('Tasks.reorder task: ${task}');
+    tasks.insert(newIndex, task);
+    state = tasks;
+    print('Tasks.reorder tasks: ${tasks.indexOf(task)}');
+    await saveTasks();
+  }
 }

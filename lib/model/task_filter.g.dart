@@ -9,6 +9,7 @@ part of 'task_filter.dart';
 _$TaskFilterImpl _$$TaskFilterImplFromJson(Map<String, dynamic> json) =>
     _$TaskFilterImpl(
       id: json['id'] as String,
+      name: json['name'] as String,
       timeLeft: json['timeLeft'] == null
           ? null
           : Duration(microseconds: (json['timeLeft'] as num).toInt()),
@@ -28,6 +29,7 @@ _$TaskFilterImpl _$$TaskFilterImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$TaskFilterImplToJson(_$TaskFilterImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'name': instance.name,
       'timeLeft': instance.timeLeft?.inMicroseconds,
       'textQuery': instance.textQuery,
       'includedTags': instance.includedTags?.toList(),

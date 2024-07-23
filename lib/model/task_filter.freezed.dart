@@ -21,6 +21,7 @@ TaskFilter _$TaskFilterFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TaskFilter {
   String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   Duration? get timeLeft => throw _privateConstructorUsedError;
   String? get textQuery => throw _privateConstructorUsedError;
   Set<Tag>? get includedTags => throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $TaskFilterCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String name,
       Duration? timeLeft,
       String? textQuery,
       Set<Tag>? includedTags,
@@ -74,6 +76,7 @@ class _$TaskFilterCopyWithImpl<$Res, $Val extends TaskFilter>
   @override
   $Res call({
     Object? id = null,
+    Object? name = null,
     Object? timeLeft = freezed,
     Object? textQuery = freezed,
     Object? includedTags = freezed,
@@ -87,6 +90,10 @@ class _$TaskFilterCopyWithImpl<$Res, $Val extends TaskFilter>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       timeLeft: freezed == timeLeft
           ? _value.timeLeft
@@ -134,6 +141,7 @@ abstract class _$$TaskFilterImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
+      String name,
       Duration? timeLeft,
       String? textQuery,
       Set<Tag>? includedTags,
@@ -159,6 +167,7 @@ class __$$TaskFilterImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? name = null,
     Object? timeLeft = freezed,
     Object? textQuery = freezed,
     Object? includedTags = freezed,
@@ -172,6 +181,10 @@ class __$$TaskFilterImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       timeLeft: freezed == timeLeft
           ? _value.timeLeft
@@ -214,6 +227,7 @@ class __$$TaskFilterImplCopyWithImpl<$Res>
 class _$TaskFilterImpl implements _TaskFilter {
   const _$TaskFilterImpl(
       {required this.id,
+      required this.name,
       this.timeLeft,
       this.textQuery,
       final Set<Tag>? includedTags,
@@ -233,6 +247,8 @@ class _$TaskFilterImpl implements _TaskFilter {
 
   @override
   final String id;
+  @override
+  final String name;
   @override
   final Duration? timeLeft;
   @override
@@ -271,7 +287,7 @@ class _$TaskFilterImpl implements _TaskFilter {
 
   @override
   String toString() {
-    return 'TaskFilter(id: $id, timeLeft: $timeLeft, textQuery: $textQuery, includedTags: $includedTags, excludedTags: $excludedTags, priority: $priority, createdDate: $createdDate, dueDate: $dueDate, isDone: $isDone)';
+    return 'TaskFilter(id: $id, name: $name, timeLeft: $timeLeft, textQuery: $textQuery, includedTags: $includedTags, excludedTags: $excludedTags, priority: $priority, createdDate: $createdDate, dueDate: $dueDate, isDone: $isDone)';
   }
 
   @override
@@ -280,6 +296,7 @@ class _$TaskFilterImpl implements _TaskFilter {
         (other.runtimeType == runtimeType &&
             other is _$TaskFilterImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.timeLeft, timeLeft) ||
                 other.timeLeft == timeLeft) &&
             (identical(other.textQuery, textQuery) ||
@@ -301,6 +318,7 @@ class _$TaskFilterImpl implements _TaskFilter {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      name,
       timeLeft,
       textQuery,
       const DeepCollectionEquality().hash(_includedTags),
@@ -327,6 +345,7 @@ class _$TaskFilterImpl implements _TaskFilter {
 abstract class _TaskFilter implements TaskFilter {
   const factory _TaskFilter(
       {required final String id,
+      required final String name,
       final Duration? timeLeft,
       final String? textQuery,
       final Set<Tag>? includedTags,
@@ -344,6 +363,8 @@ abstract class _TaskFilter implements TaskFilter {
 
   @override
   String get id;
+  @override
+  String get name;
   @override
   Duration? get timeLeft;
   @override

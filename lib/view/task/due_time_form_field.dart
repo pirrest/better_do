@@ -80,12 +80,13 @@ class _DueTimeFormFieldState extends State<DueTimeFormField> {
     setState(() {
       _enabled = time != null;
       if (time != null) {
-        _date?.copyWith(
+        _date = _date?.copyWith(
           hour: time.hour,
           minute: time.minute,
           second: 0,
           millisecond: 0,
         );
+        widget.onSelected(_date);
       }
     });
   }

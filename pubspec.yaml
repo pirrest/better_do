@@ -45,6 +45,7 @@ dependencies:
   range_type: ^0.1.0
   hooks_riverpod: ^2.5.1
   intl: any
+  flutter_local_notifications: ^17.2.1+2
 
 dev_dependencies:
   custom_lint:

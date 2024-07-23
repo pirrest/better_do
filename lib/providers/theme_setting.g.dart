@@ -6,7 +6,7 @@ part of 'theme_setting.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$rpThemeSettingHash() => r'cbc083fc9abc894e1804d42b7a0817e6b00c2645';
+String _$rpThemeSettingHash() => r'3ebb4943728c64d5201eca7c799e1d569acedb7a';
 
 /// See also [RpThemeSetting].
 @ProviderFor(RpThemeSetting)

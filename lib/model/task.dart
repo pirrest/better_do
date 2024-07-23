@@ -14,6 +14,7 @@ class Task with _$Task {
     required String text,
     required DateTime createdDate,
     DateTime? dueDate,
+    DateTime? doneDate,
     @Default([]) List<Tag> tags,
     @Default([]) List<String> files,
     @Default(5) int priority,
