@@ -13,7 +13,7 @@ LocalNotificationsService localNotificationsService(
 }
 
 class LocalNotificationsService {
-  FlutterLocalNotificationsPlugin _plugin;
+  final FlutterLocalNotificationsPlugin _plugin;
   late String _timeZone;
 
   LocalNotificationsService(this._plugin) {
