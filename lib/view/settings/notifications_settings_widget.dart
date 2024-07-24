@@ -44,9 +44,6 @@ class _NotificationsSettingsWidgetState
   }
 
   void _select() async {
-    await ref.read(localNotificationsServiceProvider).scheduleNotification();
-    print("done");
-    return;
     final time = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.fromDateTime(_date),

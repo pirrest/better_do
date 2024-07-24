@@ -10,7 +10,7 @@ enum TimeEstimate { minutes, hours, days, weeks, months, years }
 @freezed
 class Task with _$Task {
   const factory Task({
-    required String id,
+    required int id,
     required String text,
     required DateTime createdDate,
     DateTime? dueDate,

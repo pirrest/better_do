@@ -20,7 +20,7 @@ Task _$TaskFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Task {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
   DateTime get createdDate => throw _privateConstructorUsedError;
   DateTime? get dueDate => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $TaskCopyWith<$Res> {
       _$TaskCopyWithImpl<$Res, Task>;
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String text,
       DateTime createdDate,
       DateTime? dueDate,
@@ -89,7 +89,7 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -146,7 +146,7 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String text,
       DateTime createdDate,
       DateTime? dueDate,
@@ -187,7 +187,7 @@ class __$$TaskImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -260,7 +260,7 @@ class _$TaskImpl implements _Task {
       _$$TaskImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String text;
   @override
@@ -365,7 +365,7 @@ class _$TaskImpl implements _Task {
 
 abstract class _Task implements Task {
   const factory _Task(
-      {required final String id,
+      {required final int id,
       required final String text,
       required final DateTime createdDate,
       final DateTime? dueDate,
@@ -382,7 +382,7 @@ abstract class _Task implements Task {
   factory _Task.fromJson(Map<String, dynamic> json) = _$TaskImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get text;
   @override

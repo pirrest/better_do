@@ -15,6 +15,10 @@ class Preferences {
 
   Preferences(this._prefs);
 
+  int get lastTaskId => _prefs.getInt('lastTaskId') ?? 0;
+  set lastTaskId(value) => _prefs.setInt('lastTaskId', value);
+  int getNextTaskId() => ++lastTaskId;
+
   String getTasks() => _prefs.getString('tasks') ?? "[]";
 
   Future<void> setTasks(String value) async =>

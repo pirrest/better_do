@@ -1,5 +1,6 @@
 import 'package:better_do/model/task.dart';
 import 'package:better_do/providers/tasks.dart';
+import 'package:better_do/repositories/preferences.dart';
 import 'package:better_do/view/task/due_date_form_field.dart';
 import 'package:better_do/view/task/due_time_form_field.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,11 @@ class TaskPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var task = context.read<Task?>()?.copyWith();
     final isNewTask = task == null;
-    task ??= Task(createdDate: DateTime.now(), text: "", id: const Uuid().v4());
+    task ??= Task(
+      createdDate: DateTime.now(),
+      text: "",
+      id: ref.read(rpPreferencesProvider).getNextTasksId(),
+    );
     final textController = useTextEditingController(text: task.text);
     final formKey = GlobalKey<FormState>();
     final focusNode = useFocusNode();
@@ -25,7 +30,7 @@ class TaskPage extends HookConsumerWidget {
       ),
       body: SafeArea(
         child: Form(
-          key:formKey,
+          key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -60,12 +65,20 @@ class TaskPage extends HookConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        DueDateFormField(date: task.dueDate, onSelected: (date) {
-                          task = task!.copyWith(dueDate: date);
-                        },),
-                        DueTimeFormField(date: task?.dueDate, onSelected: (date) {
-                          task = task!.copyWith(dueDate: date);
-                        },),
+                        DueDateFormField(
+                          date: task.dueDate,
+                          onSelected: (date) {
+                            task = task!.copyWith(dueDate: date);
+                          },
+                        ),
+                        DueTimeFormField(
+                          date: task?.dueDate,
+                          onSelected: (date) {
+                            final isFullDay = date == null;
+                            date ??= task?.dueDate?.copyWith(hour: 0, minute: 0);
+                            task = task!.copyWith(dueDate: date, isFullDay: isFullDay);
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -77,8 +90,8 @@ class TaskPage extends HookConsumerWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      task = task!.copyWith(text:textController.text);
-                      if(isNewTask) {
+                      task = task!.copyWith(text: textController.text);
+                      if (isNewTask) {
                         ref.read(tasksProvider.notifier).addTask(task!);
                       } else {
                         ref.read(tasksProvider.notifier).updateTask(task!);

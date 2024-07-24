@@ -4,6 +4,7 @@ import 'package:better_do/view/task/task_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart' as p;
 
 class TasksPage extends ConsumerStatefulWidget {
@@ -23,6 +24,7 @@ class _TasksPageState extends ConsumerState<TasksPage> {
 
     itemBuilder(BuildContext context, int index) {
       final task = tasks[index];
+      final formatter = task.isFullDay ? DateFormat("EEE, dd MMMM yyyy") : DateFormat("EEE, dd MMMM yyyy, hh:mm");
       return GestureDetector(
         key: ValueKey(task),
         onTap: () {
@@ -39,11 +41,11 @@ class _TasksPageState extends ConsumerState<TasksPage> {
                     ref.read(tasksProvider.notifier).updateTask(t);
                   },
                 ),
-          subtitle: task.dueDate != null ? Text(task.dueDate.toString()) : null,
           title: Text(
             task.text,
             overflow: TextOverflow.ellipsis,
           ),
+          subtitle: task.dueDate != null ? Text(formatter.format(task.dueDate!)) : null,
           horizontalTitleGap: 0,
           trailing: _isEditable
               ? IconButton(

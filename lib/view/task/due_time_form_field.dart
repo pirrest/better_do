@@ -58,6 +58,7 @@ class _DueTimeFormFieldState extends State<DueTimeFormField> {
                     } else {
                       setState(() {
                         _enabled = false;
+                        widget.onSelected(null);
                       });
                     }
                   },

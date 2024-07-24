@@ -1,5 +1,8 @@
+import 'package:better_do/model/task.dart';
+import 'package:better_do/repositories/preferences.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -9,14 +12,15 @@ part 'local_notifications.g.dart';
 @riverpod
 LocalNotificationsService localNotificationsService(
     LocalNotificationsServiceRef ref) {
-  return LocalNotificationsService(FlutterLocalNotificationsPlugin());
+  return LocalNotificationsService(FlutterLocalNotificationsPlugin(), ref);
 }
 
 class LocalNotificationsService {
   final FlutterLocalNotificationsPlugin _plugin;
   late String _timeZone;
+  LocalNotificationsServiceRef _ref;
 
-  LocalNotificationsService(this._plugin) {
+  LocalNotificationsService(this._plugin, this._ref) {
     _init();
   }
 
@@ -80,18 +84,37 @@ class LocalNotificationsService {
     print('notification payload: $payload');
   }
 
-  Future<void> scheduleNotification() async {
-    await _plugin.zonedSchedule(
-      0,
-      'scheduled title',
-      'scheduled body',
-      tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
-      const NotificationDetails(
-          android: AndroidNotificationDetails('main_channel', 'Main channel',
-              channelDescription: 'Main channel for tasks reminders')),
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
-    );
+  Future<void> scheduleTaskNotification(Task task) async {
+    final dueDate = task.dueDate;
+    if (dueDate == null) return;
+    DateTime scheduleDate =
+        DateTime.fromMillisecondsSinceEpoch(dueDate.millisecondsSinceEpoch);
+    if (task.isFullDay) {
+      final noteTime =
+          _ref.read(rpPreferencesProvider).getWholeDayTaskNotificationTime();
+      scheduleDate = scheduleDate.copyWith(
+        hour: noteTime.hour,
+        minute: noteTime.minute,
+      );
+    }
+    await cancelTaskNotification(task.id);
+    if (DateTime.now().compareTo(scheduleDate) <= 0) {
+      await _plugin.zonedSchedule(
+        task.id,
+        "Task due date is now!",
+        task.text,
+        tz.TZDateTime.from(scheduleDate, tz.local),
+        const NotificationDetails(
+            android: AndroidNotificationDetails('main_channel', 'Main channel',
+                channelDescription: 'Main channel for tasks reminders')),
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+      );
+    }
+  }
+
+  Future<void> cancelTaskNotification(int id) async {
+    await _plugin.cancel(id);
   }
 }

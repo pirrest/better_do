@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:better_do/model/task.dart';
+import 'package:better_do/providers/local_notifications.dart';
 import 'package:better_do/repositories/preferences.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -34,22 +35,34 @@ class Tasks extends _$Tasks {
     final tasks = [...state];
     tasks.add(task);
     state = tasks;
+    await ref
+        .read(localNotificationsServiceProvider)
+        .scheduleTaskNotification(task);
     await saveTasks();
   }
 
   Future<void> updateTask(Task task) async {
     final tasks = [...state];
     final index = tasks.indexWhere((element) => element.id == task.id);
-    if(index == -1) return;
+    if (index == -1) return;
+    await ref
+        .read(localNotificationsServiceProvider)
+        .cancelTaskNotification(tasks[index].id);
     tasks[index] = task;
+    await ref
+        .read(localNotificationsServiceProvider)
+        .scheduleTaskNotification(task);
     state = tasks;
     await saveTasks();
   }
 
-  Future<void> removeTask(String id) async {
+  Future<void> removeTask(int id) async {
     final tasks = [...state];
     tasks.removeWhere((element) => element.id == id);
     state = tasks;
+    await ref
+        .read(localNotificationsServiceProvider)
+        .cancelTaskNotification(id);
     await saveTasks();
   }
 
@@ -58,7 +71,7 @@ class Tasks extends _$Tasks {
     print('Tasks.reorder newIndex: ${newIndex}');
     if (oldIndex < newIndex) {
       newIndex -= 1;
-    print('Tasks.reorder newIndex: ${newIndex}');
+      print('Tasks.reorder newIndex: ${newIndex}');
     }
     final tasks = [...state];
     final task = tasks.removeAt(oldIndex);
