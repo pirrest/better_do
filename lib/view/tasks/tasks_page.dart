@@ -26,13 +26,15 @@ class _TasksPageState extends ConsumerState<TasksPage> {
       final formatter = task.isFullDay
           ? DateFormat("EEE, dd MMMM yyyy")
           : DateFormat("EEE, dd MMMM yyyy, hh:mm");
-      final dueDateStr = task.dueDate != null ? formatter.format(task.dueDate!) : "";
-      final tagsStr =                 task.tags
+      final dueDateStr =
+          task.dueDate != null ? formatter.format(task.dueDate!) : "";
+      final tagsStr = task.tags
           .map(
             (e) => "#${e.name}",
-      )
+          )
           .join(", ");
-      final subtitle = [if(dueDateStr.isNotEmpty)dueDateStr, tagsStr].join("\n");
+      final subtitle =
+          [if (dueDateStr.isNotEmpty) dueDateStr, tagsStr].join("\n");
       return GestureDetector(
         key: ValueKey(task),
         onTap: () {
@@ -54,11 +56,13 @@ class _TasksPageState extends ConsumerState<TasksPage> {
             task.text,
             overflow: TextOverflow.ellipsis,
           ),
-          subtitle: subtitle.isNotEmpty ?               Text(
-            subtitle,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-          ) : null,
+          subtitle: subtitle.isNotEmpty
+              ? Text(
+                  subtitle,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                )
+              : null,
           horizontalTitleGap: 0,
           trailing: _isEditable
               ? IconButton(

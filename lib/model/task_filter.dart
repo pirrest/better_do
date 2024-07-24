@@ -15,10 +15,8 @@ class TaskFilter with _$TaskFilter {
     required String name,
     Duration? timeLeft,
     String? textQuery,
-    Set<Tag>? includedTags,
-    Set<Tag>? excludedTags,
-    @JsonKey(fromJson: intRangeFromJson, toJson: intRangeToJson)
-    IntRange? priority,
+    List<Tag>? includedTags,
+    List<Tag>? excludedTags,
     @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
     DateTimeRange? createdDate,
     @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)

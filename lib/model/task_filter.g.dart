@@ -16,11 +16,10 @@ _$TaskFilterImpl _$$TaskFilterImplFromJson(Map<String, dynamic> json) =>
       textQuery: json['textQuery'] as String?,
       includedTags: (json['includedTags'] as List<dynamic>?)
           ?.map((e) => Tag.fromJson(e as Map<String, dynamic>))
-          .toSet(),
+          .toList(),
       excludedTags: (json['excludedTags'] as List<dynamic>?)
           ?.map((e) => Tag.fromJson(e as Map<String, dynamic>))
-          .toSet(),
-      priority: intRangeFromJson(json['priority'] as String),
+          .toList(),
       createdDate: dateTimeRangeFromJson(json['createdDate'] as String),
       dueDate: dateTimeRangeFromJson(json['dueDate'] as String),
       isDone: json['isDone'] as bool?,
@@ -32,9 +31,8 @@ Map<String, dynamic> _$$TaskFilterImplToJson(_$TaskFilterImpl instance) =>
       'name': instance.name,
       'timeLeft': instance.timeLeft?.inMicroseconds,
       'textQuery': instance.textQuery,
-      'includedTags': instance.includedTags?.toList(),
-      'excludedTags': instance.excludedTags?.toList(),
-      'priority': intRangeToJson(instance.priority),
+      'includedTags': instance.includedTags,
+      'excludedTags': instance.excludedTags,
       'createdDate': dateTimeRangeToJson(instance.createdDate),
       'dueDate': dateTimeRangeToJson(instance.dueDate),
       'isDone': instance.isDone,

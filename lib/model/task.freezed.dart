@@ -27,12 +27,8 @@ mixin _$Task {
   DateTime? get doneDate => throw _privateConstructorUsedError;
   List<Tag> get tags => throw _privateConstructorUsedError;
   List<String> get files => throw _privateConstructorUsedError;
-  int get priority => throw _privateConstructorUsedError;
-  TimeEstimate get timeEstimate => throw _privateConstructorUsedError;
   bool get isDone => throw _privateConstructorUsedError;
   bool get isFullDay => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  bool get isLocal => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,11 +48,8 @@ abstract class $TaskCopyWith<$Res> {
       DateTime? doneDate,
       List<Tag> tags,
       List<String> files,
-      int priority,
-      TimeEstimate timeEstimate,
       bool isDone,
-      bool isFullDay,
-      @JsonKey(includeFromJson: false, includeToJson: false) bool isLocal});
+      bool isFullDay});
 }
 
 /// @nodoc
@@ -79,11 +72,8 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
     Object? doneDate = freezed,
     Object? tags = null,
     Object? files = null,
-    Object? priority = null,
-    Object? timeEstimate = null,
     Object? isDone = null,
     Object? isFullDay = null,
-    Object? isLocal = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -114,14 +104,6 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
           ? _value.files
           : files // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      priority: null == priority
-          ? _value.priority
-          : priority // ignore: cast_nullable_to_non_nullable
-              as int,
-      timeEstimate: null == timeEstimate
-          ? _value.timeEstimate
-          : timeEstimate // ignore: cast_nullable_to_non_nullable
-              as TimeEstimate,
       isDone: null == isDone
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
@@ -129,10 +111,6 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
       isFullDay: null == isFullDay
           ? _value.isFullDay
           : isFullDay // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLocal: null == isLocal
-          ? _value.isLocal
-          : isLocal // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -153,11 +131,8 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
       DateTime? doneDate,
       List<Tag> tags,
       List<String> files,
-      int priority,
-      TimeEstimate timeEstimate,
       bool isDone,
-      bool isFullDay,
-      @JsonKey(includeFromJson: false, includeToJson: false) bool isLocal});
+      bool isFullDay});
 }
 
 /// @nodoc
@@ -177,11 +152,8 @@ class __$$TaskImplCopyWithImpl<$Res>
     Object? doneDate = freezed,
     Object? tags = null,
     Object? files = null,
-    Object? priority = null,
-    Object? timeEstimate = null,
     Object? isDone = null,
     Object? isFullDay = null,
-    Object? isLocal = null,
   }) {
     return _then(_$TaskImpl(
       id: null == id
@@ -212,14 +184,6 @@ class __$$TaskImplCopyWithImpl<$Res>
           ? _value._files
           : files // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      priority: null == priority
-          ? _value.priority
-          : priority // ignore: cast_nullable_to_non_nullable
-              as int,
-      timeEstimate: null == timeEstimate
-          ? _value.timeEstimate
-          : timeEstimate // ignore: cast_nullable_to_non_nullable
-              as TimeEstimate,
       isDone: null == isDone
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
@@ -227,10 +191,6 @@ class __$$TaskImplCopyWithImpl<$Res>
       isFullDay: null == isFullDay
           ? _value.isFullDay
           : isFullDay // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLocal: null == isLocal
-          ? _value.isLocal
-          : isLocal // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -247,12 +207,8 @@ class _$TaskImpl implements _Task {
       this.doneDate,
       final List<Tag> tags = const [],
       final List<String> files = const [],
-      this.priority = 5,
-      this.timeEstimate = TimeEstimate.hours,
       this.isDone = false,
-      this.isFullDay = true,
-      @JsonKey(includeFromJson: false, includeToJson: false)
-      this.isLocal = false})
+      this.isFullDay = true})
       : _tags = tags,
         _files = files;
 
@@ -289,23 +245,14 @@ class _$TaskImpl implements _Task {
 
   @override
   @JsonKey()
-  final int priority;
-  @override
-  @JsonKey()
-  final TimeEstimate timeEstimate;
-  @override
-  @JsonKey()
   final bool isDone;
   @override
   @JsonKey()
   final bool isFullDay;
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  final bool isLocal;
 
   @override
   String toString() {
-    return 'Task(id: $id, text: $text, createdDate: $createdDate, dueDate: $dueDate, doneDate: $doneDate, tags: $tags, files: $files, priority: $priority, timeEstimate: $timeEstimate, isDone: $isDone, isFullDay: $isFullDay, isLocal: $isLocal)';
+    return 'Task(id: $id, text: $text, createdDate: $createdDate, dueDate: $dueDate, doneDate: $doneDate, tags: $tags, files: $files, isDone: $isDone, isFullDay: $isFullDay)';
   }
 
   @override
@@ -322,14 +269,9 @@ class _$TaskImpl implements _Task {
                 other.doneDate == doneDate) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality().equals(other._files, _files) &&
-            (identical(other.priority, priority) ||
-                other.priority == priority) &&
-            (identical(other.timeEstimate, timeEstimate) ||
-                other.timeEstimate == timeEstimate) &&
             (identical(other.isDone, isDone) || other.isDone == isDone) &&
             (identical(other.isFullDay, isFullDay) ||
-                other.isFullDay == isFullDay) &&
-            (identical(other.isLocal, isLocal) || other.isLocal == isLocal));
+                other.isFullDay == isFullDay));
   }
 
   @JsonKey(ignore: true)
@@ -343,11 +285,8 @@ class _$TaskImpl implements _Task {
       doneDate,
       const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(_files),
-      priority,
-      timeEstimate,
       isDone,
-      isFullDay,
-      isLocal);
+      isFullDay);
 
   @JsonKey(ignore: true)
   @override
@@ -372,12 +311,8 @@ abstract class _Task implements Task {
       final DateTime? doneDate,
       final List<Tag> tags,
       final List<String> files,
-      final int priority,
-      final TimeEstimate timeEstimate,
       final bool isDone,
-      final bool isFullDay,
-      @JsonKey(includeFromJson: false, includeToJson: false)
-      final bool isLocal}) = _$TaskImpl;
+      final bool isFullDay}) = _$TaskImpl;
 
   factory _Task.fromJson(Map<String, dynamic> json) = _$TaskImpl.fromJson;
 
@@ -396,16 +331,9 @@ abstract class _Task implements Task {
   @override
   List<String> get files;
   @override
-  int get priority;
-  @override
-  TimeEstimate get timeEstimate;
-  @override
   bool get isDone;
   @override
   bool get isFullDay;
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  bool get isLocal;
   @override
   @JsonKey(ignore: true)
   _$$TaskImplCopyWith<_$TaskImpl> get copyWith =>

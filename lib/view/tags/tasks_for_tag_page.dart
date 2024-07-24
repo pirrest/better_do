@@ -69,13 +69,8 @@ class TasksForTagPage extends ConsumerWidget {
                 itemCount: tasks.length,
                 itemBuilder: itemBuilder,
               ))
-            : Center(
-                child: ElevatedButton(
-                  child: const Text("Add task"),
-                  onPressed: () {
-                    addNewTask(context);
-                  },
-                ),
+            : const Center(
+                child: Text("No tasks for this tag"),
               ),
       ),
     );

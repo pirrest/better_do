@@ -43,20 +43,4 @@ class TaskFilters extends _$TaskFilters {
     state = list;
     await save();
   }
-
-  Future<void> reorder(int oldIndex, int newIndex) async {
-    print('Tasks.reorder oldIndex: ${oldIndex}');
-    print('Tasks.reorder newIndex: ${newIndex}');
-    if (oldIndex < newIndex) {
-      newIndex -= 1;
-      print('Tasks.reorder newIndex: ${newIndex}');
-    }
-    final list = [...state];
-    final task = list.removeAt(oldIndex);
-    print('Tasks.reorder task: ${task}');
-    list.insert(newIndex, task);
-    state = list;
-    print('Tasks.reorder list: ${list.indexOf(task)}');
-    await save();
-  }
 }

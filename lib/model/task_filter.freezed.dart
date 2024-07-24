@@ -24,10 +24,8 @@ mixin _$TaskFilter {
   String get name => throw _privateConstructorUsedError;
   Duration? get timeLeft => throw _privateConstructorUsedError;
   String? get textQuery => throw _privateConstructorUsedError;
-  Set<Tag>? get includedTags => throw _privateConstructorUsedError;
-  Set<Tag>? get excludedTags => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: intRangeFromJson, toJson: intRangeToJson)
-  IntRange? get priority => throw _privateConstructorUsedError;
+  List<Tag>? get includedTags => throw _privateConstructorUsedError;
+  List<Tag>? get excludedTags => throw _privateConstructorUsedError;
   @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
   DateTimeRange? get createdDate => throw _privateConstructorUsedError;
   @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
@@ -51,10 +49,8 @@ abstract class $TaskFilterCopyWith<$Res> {
       String name,
       Duration? timeLeft,
       String? textQuery,
-      Set<Tag>? includedTags,
-      Set<Tag>? excludedTags,
-      @JsonKey(fromJson: intRangeFromJson, toJson: intRangeToJson)
-      IntRange? priority,
+      List<Tag>? includedTags,
+      List<Tag>? excludedTags,
       @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
       DateTimeRange? createdDate,
       @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
@@ -81,7 +77,6 @@ class _$TaskFilterCopyWithImpl<$Res, $Val extends TaskFilter>
     Object? textQuery = freezed,
     Object? includedTags = freezed,
     Object? excludedTags = freezed,
-    Object? priority = freezed,
     Object? createdDate = freezed,
     Object? dueDate = freezed,
     Object? isDone = freezed,
@@ -106,15 +101,11 @@ class _$TaskFilterCopyWithImpl<$Res, $Val extends TaskFilter>
       includedTags: freezed == includedTags
           ? _value.includedTags
           : includedTags // ignore: cast_nullable_to_non_nullable
-              as Set<Tag>?,
+              as List<Tag>?,
       excludedTags: freezed == excludedTags
           ? _value.excludedTags
           : excludedTags // ignore: cast_nullable_to_non_nullable
-              as Set<Tag>?,
-      priority: freezed == priority
-          ? _value.priority
-          : priority // ignore: cast_nullable_to_non_nullable
-              as IntRange?,
+              as List<Tag>?,
       createdDate: freezed == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -144,10 +135,8 @@ abstract class _$$TaskFilterImplCopyWith<$Res>
       String name,
       Duration? timeLeft,
       String? textQuery,
-      Set<Tag>? includedTags,
-      Set<Tag>? excludedTags,
-      @JsonKey(fromJson: intRangeFromJson, toJson: intRangeToJson)
-      IntRange? priority,
+      List<Tag>? includedTags,
+      List<Tag>? excludedTags,
       @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
       DateTimeRange? createdDate,
       @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
@@ -172,7 +161,6 @@ class __$$TaskFilterImplCopyWithImpl<$Res>
     Object? textQuery = freezed,
     Object? includedTags = freezed,
     Object? excludedTags = freezed,
-    Object? priority = freezed,
     Object? createdDate = freezed,
     Object? dueDate = freezed,
     Object? isDone = freezed,
@@ -197,15 +185,11 @@ class __$$TaskFilterImplCopyWithImpl<$Res>
       includedTags: freezed == includedTags
           ? _value._includedTags
           : includedTags // ignore: cast_nullable_to_non_nullable
-              as Set<Tag>?,
+              as List<Tag>?,
       excludedTags: freezed == excludedTags
           ? _value._excludedTags
           : excludedTags // ignore: cast_nullable_to_non_nullable
-              as Set<Tag>?,
-      priority: freezed == priority
-          ? _value.priority
-          : priority // ignore: cast_nullable_to_non_nullable
-              as IntRange?,
+              as List<Tag>?,
       createdDate: freezed == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -230,10 +214,8 @@ class _$TaskFilterImpl implements _TaskFilter {
       required this.name,
       this.timeLeft,
       this.textQuery,
-      final Set<Tag>? includedTags,
-      final Set<Tag>? excludedTags,
-      @JsonKey(fromJson: intRangeFromJson, toJson: intRangeToJson)
-      this.priority,
+      final List<Tag>? includedTags,
+      final List<Tag>? excludedTags,
       @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
       this.createdDate,
       @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
@@ -253,29 +235,26 @@ class _$TaskFilterImpl implements _TaskFilter {
   final Duration? timeLeft;
   @override
   final String? textQuery;
-  final Set<Tag>? _includedTags;
+  final List<Tag>? _includedTags;
   @override
-  Set<Tag>? get includedTags {
+  List<Tag>? get includedTags {
     final value = _includedTags;
     if (value == null) return null;
-    if (_includedTags is EqualUnmodifiableSetView) return _includedTags;
+    if (_includedTags is EqualUnmodifiableListView) return _includedTags;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(value);
+    return EqualUnmodifiableListView(value);
   }
 
-  final Set<Tag>? _excludedTags;
+  final List<Tag>? _excludedTags;
   @override
-  Set<Tag>? get excludedTags {
+  List<Tag>? get excludedTags {
     final value = _excludedTags;
     if (value == null) return null;
-    if (_excludedTags is EqualUnmodifiableSetView) return _excludedTags;
+    if (_excludedTags is EqualUnmodifiableListView) return _excludedTags;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(value);
+    return EqualUnmodifiableListView(value);
   }
 
-  @override
-  @JsonKey(fromJson: intRangeFromJson, toJson: intRangeToJson)
-  final IntRange? priority;
   @override
   @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
   final DateTimeRange? createdDate;
@@ -287,7 +266,7 @@ class _$TaskFilterImpl implements _TaskFilter {
 
   @override
   String toString() {
-    return 'TaskFilter(id: $id, name: $name, timeLeft: $timeLeft, textQuery: $textQuery, includedTags: $includedTags, excludedTags: $excludedTags, priority: $priority, createdDate: $createdDate, dueDate: $dueDate, isDone: $isDone)';
+    return 'TaskFilter(id: $id, name: $name, timeLeft: $timeLeft, textQuery: $textQuery, includedTags: $includedTags, excludedTags: $excludedTags, createdDate: $createdDate, dueDate: $dueDate, isDone: $isDone)';
   }
 
   @override
@@ -305,8 +284,6 @@ class _$TaskFilterImpl implements _TaskFilter {
                 .equals(other._includedTags, _includedTags) &&
             const DeepCollectionEquality()
                 .equals(other._excludedTags, _excludedTags) &&
-            (identical(other.priority, priority) ||
-                other.priority == priority) &&
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate) &&
             (identical(other.dueDate, dueDate) || other.dueDate == dueDate) &&
@@ -323,7 +300,6 @@ class _$TaskFilterImpl implements _TaskFilter {
       textQuery,
       const DeepCollectionEquality().hash(_includedTags),
       const DeepCollectionEquality().hash(_excludedTags),
-      priority,
       createdDate,
       dueDate,
       isDone);
@@ -348,10 +324,8 @@ abstract class _TaskFilter implements TaskFilter {
       required final String name,
       final Duration? timeLeft,
       final String? textQuery,
-      final Set<Tag>? includedTags,
-      final Set<Tag>? excludedTags,
-      @JsonKey(fromJson: intRangeFromJson, toJson: intRangeToJson)
-      final IntRange? priority,
+      final List<Tag>? includedTags,
+      final List<Tag>? excludedTags,
       @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
       final DateTimeRange? createdDate,
       @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
@@ -370,12 +344,9 @@ abstract class _TaskFilter implements TaskFilter {
   @override
   String? get textQuery;
   @override
-  Set<Tag>? get includedTags;
+  List<Tag>? get includedTags;
   @override
-  Set<Tag>? get excludedTags;
-  @override
-  @JsonKey(fromJson: intRangeFromJson, toJson: intRangeToJson)
-  IntRange? get priority;
+  List<Tag>? get excludedTags;
   @override
   @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
   DateTimeRange? get createdDate;

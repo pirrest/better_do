@@ -23,10 +23,6 @@ _$TaskImpl _$$TaskImplFromJson(Map<String, dynamic> json) => _$TaskImpl(
       files:
           (json['files'] as List<dynamic>?)?.map((e) => e as String).toList() ??
               const [],
-      priority: (json['priority'] as num?)?.toInt() ?? 5,
-      timeEstimate:
-          $enumDecodeNullable(_$TimeEstimateEnumMap, json['timeEstimate']) ??
-              TimeEstimate.hours,
       isDone: json['isDone'] as bool? ?? false,
       isFullDay: json['isFullDay'] as bool? ?? true,
     );
@@ -40,17 +36,6 @@ Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
       'doneDate': instance.doneDate?.toIso8601String(),
       'tags': instance.tags,
       'files': instance.files,
-      'priority': instance.priority,
-      'timeEstimate': _$TimeEstimateEnumMap[instance.timeEstimate]!,
       'isDone': instance.isDone,
       'isFullDay': instance.isFullDay,
     };
-
-const _$TimeEstimateEnumMap = {
-  TimeEstimate.minutes: 'minutes',
-  TimeEstimate.hours: 'hours',
-  TimeEstimate.days: 'days',
-  TimeEstimate.weeks: 'weeks',
-  TimeEstimate.months: 'months',
-  TimeEstimate.years: 'years',
-};

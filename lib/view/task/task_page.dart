@@ -57,7 +57,7 @@ class TaskPage extends HookConsumerWidget {
                             ),
                             controller: textController,
                             validator: (value) {
-                              if (value == null || value.isEmpty) {
+                              if (value == null || value.trim().isEmpty) {
                                 return 'Please enter some text';
                               }
                               return null;
@@ -94,7 +94,7 @@ class TaskPage extends HookConsumerWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      task = task!.copyWith(text: textController.text);
+                      task = task!.copyWith(text: textController.text.trim());
                       if (isNewTask) {
                         ref.read(tasksProvider.notifier).addTask(task!);
                       } else {
