@@ -1,5 +1,6 @@
 import 'package:better_do/main.dart';
 import 'package:better_do/providers/tasks.dart';
+import 'package:better_do/view/settings/settings_page.dart';
 import 'package:better_do/view/task/task_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -92,14 +93,17 @@ class _TasksPageState extends ConsumerState<TasksPage> {
       appBar: AppBar(
         title: const Text("Tasks"),
         actions: [
-          if (hasTasks)
+          IconButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage(),));
+          }, icon: const Icon(CupertinoIcons.settings)),
+          /*if (hasTasks)
             TextButton(
                 onPressed: () {
                   setState(() {
                     _isEditable = !_isEditable;
                   });
                 },
-                child: _isEditable ? const Text("Done") : const Text("Edit"))
+                child: _isEditable ? const Text("Done") : const Text("Edit"))*/
         ],
       ),
       body: SafeArea(

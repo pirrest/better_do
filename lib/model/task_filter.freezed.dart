@@ -208,7 +208,7 @@ class __$$TaskFilterImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TaskFilterImpl implements _TaskFilter {
+class _$TaskFilterImpl extends _TaskFilter {
   const _$TaskFilterImpl(
       {required this.id,
       required this.name,
@@ -222,7 +222,8 @@ class _$TaskFilterImpl implements _TaskFilter {
       this.dueDate,
       this.isDone})
       : _includedTags = includedTags,
-        _excludedTags = excludedTags;
+        _excludedTags = excludedTags,
+        super._();
 
   factory _$TaskFilterImpl.fromJson(Map<String, dynamic> json) =>
       _$$TaskFilterImplFromJson(json);
@@ -318,7 +319,7 @@ class _$TaskFilterImpl implements _TaskFilter {
   }
 }
 
-abstract class _TaskFilter implements TaskFilter {
+abstract class _TaskFilter extends TaskFilter {
   const factory _TaskFilter(
       {required final String id,
       required final String name,
@@ -331,6 +332,7 @@ abstract class _TaskFilter implements TaskFilter {
       @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
       final DateTimeRange? dueDate,
       final bool? isDone}) = _$TaskFilterImpl;
+  const _TaskFilter._() : super._();
 
   factory _TaskFilter.fromJson(Map<String, dynamic> json) =
       _$TaskFilterImpl.fromJson;

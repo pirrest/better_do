@@ -1,3 +1,5 @@
+import 'package:better_do/providers/tasks.dart';
+import 'package:better_do/repositories/preferences.dart';
 import 'package:better_do/view/settings/notifications_settings_widget.dart';
 import 'package:better_do/view/settings/theme_setting_widget.dart';
 import 'package:flutter/material.dart';
@@ -22,11 +24,24 @@ class SettingsPage extends ConsumerWidget {
                 ThemeSettingWidget(),
                 SizedBox(height: 32),
                 NotificationsSettingsWidget(),
+                ClearSettingsButton(),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+}
+
+class ClearSettingsButton extends ConsumerWidget {
+  const ClearSettingsButton({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ElevatedButton(onPressed: () {
+      ref.read(rpPreferencesProvider).clear();
+      ref.read(tasksProvider.notifier).rebuild();
+    }, child: const Text("Clear app data"));
   }
 }

@@ -63,4 +63,8 @@ class Preferences {
   Future<void> setTags(String value) async =>
       await _prefs.setString('tags', value);
 
+  void clear() {
+    _prefs.clear();
+  }
+
 }

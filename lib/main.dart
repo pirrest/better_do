@@ -1,8 +1,13 @@
+import 'package:better_do/model/tag.dart';
+import 'package:better_do/model/task_filter.dart';
 import 'package:better_do/providers/local_notifications.dart';
+import 'package:better_do/providers/tags.dart';
+import 'package:better_do/providers/task_filters.dart';
 import 'package:better_do/providers/theme_setting.dart';
 import 'package:better_do/view/settings/settings_page.dart';
 import 'package:better_do/view/tags/tags_page.dart';
 import 'package:better_do/view/task/task_page.dart';
+import 'package:better_do/view/task_filters/filtered_tasks_page.dart';
 import 'package:better_do/view/tasks/tasks_page.dart';
 import 'package:better_do/view/todo/to_do_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -71,6 +76,16 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    final filters = ref.read(taskFiltersProvider);
+    if(filters.isEmpty) {
+      Future.delayed(Duration.zero, () {
+        ref.read(taskFiltersProvider.notifier).add(const TaskFilter(id: "default", name: "Search"));
+        ref.read(tagsProvider.notifier).add(const Tag(id: "notImportant", name: "Not important"));
+        ref.read(tagsProvider.notifier).add(const Tag(id: "notUrgent", name: "Not urgent"));
+        ref.read(tagsProvider.notifier).add(const Tag(id: "important", name: "Important"));
+        ref.read(tagsProvider.notifier).add(const Tag(id: "urgent", name: "Urgent"));
+      },);
+    }
     ref.read(localNotificationsServiceProvider);
   }
 
@@ -83,8 +98,9 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
           const TasksPage(),
           const ToDoPage(),
           const SizedBox(),
+          const FilteredTasksPage(),
+          // const SettingsPage(),
           const TagsPage(),
-          const SettingsPage(),
         ][_selectedIndex],
       ),
       bottomNavigationBar: NavigationBar(
@@ -115,13 +131,17 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
             label: "",
           ),
           NavigationDestination(
+            icon: Icon(CupertinoIcons.search),
+            label: "Search",
+          ),
+          NavigationDestination(
             icon: Icon(CupertinoIcons.tag),
             label: "Tags",
           ),
-          NavigationDestination(
-            icon: Icon(CupertinoIcons.settings),
-            label: "Settings",
-          ),
+          // NavigationDestination(
+          //   icon: Icon(CupertinoIcons.settings),
+          //   label: "Settings",
+          // ),
         ],
       ),
     );

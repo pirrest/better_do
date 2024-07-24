@@ -42,7 +42,7 @@ class TaskFilterPage extends HookConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        AnimatedSize(
+                        /*AnimatedSize(
                           alignment: Alignment.topLeft,
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
@@ -64,7 +64,7 @@ class TaskFilterPage extends HookConsumerWidget {
                               return null;
                             },
                           ),
-                        ),
+                        ),*/
                         TextFormField(
                           autofocus: true,
                           maxLines: null,
@@ -78,21 +78,21 @@ class TaskFilterPage extends HookConsumerWidget {
                           controller: queryTextController,
                         ),
                         const SizedBox(height: 8),
-                        const Text("Tags to include:"),
+                        // const Text("Tags"),
                         TagsFormField(
                           tags: [...filter.includedTags ?? []],
                           onSelect: (tags) {
                             filter = filter!.copyWith(includedTags: tags);
                           },
                         ),
-                        const SizedBox(height: 8),
-                        const Text("Tags to exclude:"),
-                        TagsFormField(
-                          tags: [...filter?.excludedTags ?? []],
-                          onSelect: (tags) {
-                            filter = filter!.copyWith(excludedTags: tags);
-                          },
-                        ),
+                        // const SizedBox(height: 8),
+                        // const Text("Tags to exclude:"),
+                        // TagsFormField(
+                        //   tags: [...filter?.excludedTags ?? []],
+                        //   onSelect: (tags) {
+                        //     filter = filter!.copyWith(excludedTags: tags);
+                        //   },
+                        // ),
                       ],
                     ),
                   ),

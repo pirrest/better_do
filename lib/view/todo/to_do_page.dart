@@ -13,10 +13,11 @@ class ToDoPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final todos = ref.watch(tasksToDoProvider);
+    final hasTasks = todos.isNotEmpty;
     return Scaffold(
       appBar: AppBar(title: const Text("To do")),
       body: SafeArea(
-        child: CustomScrollView(
+        child: hasTasks ? CustomScrollView(
           slivers: [
             for (var key in todos.keys)
               SliverStickyHeader(
@@ -78,7 +79,7 @@ class ToDoPage extends ConsumerWidget {
                 )),
               )
           ],
-        ),
+        ) : const Center(child: Text("No tasks to do"),),
       ),
     );
   }

@@ -18,17 +18,6 @@ class Tasks extends _$Tasks {
     return tasks;
   }
 
-  static int _sortTasks (Task a, Task b) {
-    var res = (a.isDone ? 1 : 0).compareTo(b.isDone ? 1 : 0);
-    if (res == 0 && a.dueDate != null && b.dueDate != null) {
-      res = a.dueDate!.compareTo(b.dueDate!);
-    }
-    if (res == 0) {
-      res = a.createdDate.compareTo(b.createdDate);
-    }
-    return res;
-  }
-
   Future<void> saveTasks(List<Task> tasks) async {
     // tasks.sort(_sortTasks);
     state = tasks;
@@ -67,6 +56,10 @@ class Tasks extends _$Tasks {
         .cancelTaskNotification(id);
   }
 
+  Future<void> rebuild() async {
+    ref.invalidateSelf();
+  }
+
   Future<void> reorder(int oldIndex, int newIndex) async {
     print('Tasks.reorder oldIndex: ${oldIndex}');
     print('Tasks.reorder newIndex: ${newIndex}');
@@ -81,5 +74,16 @@ class Tasks extends _$Tasks {
     // state = tasks;
     print('Tasks.reorder tasks: ${tasks.indexOf(task)}');
     await saveTasks(tasks);
+  }
+
+  static int _sortTasks (Task a, Task b) {
+    var res = (a.isDone ? 1 : 0).compareTo(b.isDone ? 1 : 0);
+    if (res == 0 && a.dueDate != null && b.dueDate != null) {
+      res = a.dueDate!.compareTo(b.dueDate!);
+    }
+    if (res == 0) {
+      res = a.createdDate.compareTo(b.createdDate);
+    }
+    return res;
   }
 }

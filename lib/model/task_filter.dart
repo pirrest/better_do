@@ -9,8 +9,7 @@ part 'task_filter.g.dart';
 
 @freezed
 class TaskFilter with _$TaskFilter {
-  const factory TaskFilter(
-  {
+  const factory TaskFilter({
     required String id,
     required String name,
     Duration? timeLeft,
@@ -22,8 +21,18 @@ class TaskFilter with _$TaskFilter {
     @JsonKey(fromJson: dateTimeRangeFromJson, toJson: dateTimeRangeToJson)
     DateTimeRange? dueDate,
     bool? isDone,
-}
-      ) = _TaskFilter;
+  }) = _TaskFilter;
+
+  bool get isEmpty =>
+      timeLeft == null &&
+      !(textQuery?.isNotEmpty == true) &&
+      !(includedTags?.isNotEmpty == true) &&
+      !(excludedTags?.isNotEmpty == true) &&
+      createdDate == null &&
+      dueDate == null &&
+      isDone == null;
+
+  const TaskFilter._();
 
   factory TaskFilter.fromJson(Map<String, dynamic> json) =>
       _$TaskFilterFromJson(json);

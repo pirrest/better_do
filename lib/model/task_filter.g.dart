@@ -20,8 +20,8 @@ _$TaskFilterImpl _$$TaskFilterImplFromJson(Map<String, dynamic> json) =>
       excludedTags: (json['excludedTags'] as List<dynamic>?)
           ?.map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
-      createdDate: dateTimeRangeFromJson(json['createdDate'] as String),
-      dueDate: dateTimeRangeFromJson(json['dueDate'] as String),
+      createdDate: dateTimeRangeFromJson(json['createdDate'] as String?),
+      dueDate: dateTimeRangeFromJson(json['dueDate'] as String?),
       isDone: json['isDone'] as bool?,
     );
 

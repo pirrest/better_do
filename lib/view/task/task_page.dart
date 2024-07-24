@@ -4,6 +4,7 @@ import 'package:better_do/repositories/preferences.dart';
 import 'package:better_do/view/task/due_date_form_field.dart';
 import 'package:better_do/view/task/due_time_form_field.dart';
 import 'package:better_do/view/task/tags_form_field.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -27,6 +28,14 @@ class TaskPage extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(isNewTask ? "Add task" : "Edit task"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                ref.read(tasksProvider.notifier).removeTask(task!.id);
+                Navigator.pop(context);
+              },
+              icon: const Icon(CupertinoIcons.trash))
+        ],
       ),
       body: SafeArea(
         child: Form(
@@ -75,14 +84,19 @@ class TaskPage extends HookConsumerWidget {
                           date: task?.dueDate,
                           onSelected: (date) {
                             final isFullDay = date == null;
-                            date ??= task?.dueDate?.copyWith(hour: 0, minute: 0);
-                            task = task!.copyWith(dueDate: date, isFullDay: isFullDay);
+                            date ??=
+                                task?.dueDate?.copyWith(hour: 0, minute: 0);
+                            task = task!
+                                .copyWith(dueDate: date, isFullDay: isFullDay);
                           },
                         ),
                         const SizedBox(height: 8),
-                        TagsFormField(tags: [...task!.tags], onSelect: (tags) {
-                          task = task!.copyWith(tags:tags);
-                        },),
+                        TagsFormField(
+                          tags: [...task!.tags],
+                          onSelect: (tags) {
+                            task = task!.copyWith(tags: tags);
+                          },
+                        ),
                       ],
                     ),
                   ),

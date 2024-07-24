@@ -28,10 +28,12 @@ class LocalNotificationsService {
     tz.initializeTimeZones();
     _timeZone = await FlutterTimezone.getLocalTimezone();
     tz.setLocalLocation(tz.getLocation(_timeZone));
-    _plugin
+    final and = _plugin
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.requestNotificationsPermission();
+        AndroidFlutterLocalNotificationsPlugin>();
+    if(await and?.areNotificationsEnabled() != true) {
+      and?.requestNotificationsPermission();
+    }
     // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
     const initializationSettingsAndroid =
         AndroidInitializationSettings('ic_notification');
