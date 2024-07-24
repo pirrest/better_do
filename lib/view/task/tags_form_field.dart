@@ -1,5 +1,5 @@
 import 'package:better_do/model/tag.dart';
-import 'package:better_do/view/extensions/build_context.dart';
+import 'package:better_do/extensions/build_context.dart';
 import 'package:better_do/view/tags/tags_selector_page.dart';
 import 'package:flutter/material.dart';
 

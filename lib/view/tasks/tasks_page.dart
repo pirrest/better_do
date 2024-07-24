@@ -54,11 +54,11 @@ class _TasksPageState extends ConsumerState<TasksPage> {
             task.text,
             overflow: TextOverflow.ellipsis,
           ),
-          subtitle:               Text(
+          subtitle: subtitle.isNotEmpty ?               Text(
             subtitle,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
-          ),
+          ) : null,
           horizontalTitleGap: 0,
           trailing: _isEditable
               ? IconButton(
