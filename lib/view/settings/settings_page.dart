@@ -24,7 +24,7 @@ class SettingsPage extends ConsumerWidget {
                 ThemeSettingWidget(),
                 SizedBox(height: 32),
                 NotificationsSettingsWidget(),
-                ClearSettingsButton(),
+                // ClearSettingsButton(),
               ],
             ),
           ),
