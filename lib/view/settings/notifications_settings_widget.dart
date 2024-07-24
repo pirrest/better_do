@@ -30,16 +30,23 @@ class _NotificationsSettingsWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _select,
-      child: ListTile(
-        leading: const Icon(CupertinoIcons.clock),
-        title: Text(
-          _dateFormat.format(_date),
-                  overflow: TextOverflow.ellipsis,
-                ),
-        trailing: ElevatedButton(onPressed: _select, child: const Text("Edit")),
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const Text("Full day tasks notification time"),
+        GestureDetector(
+          onTap: _select,
+          child: ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(CupertinoIcons.clock),
+            title: Text(
+              _dateFormat.format(_date),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+            trailing: ElevatedButton(onPressed: _select, child: const Text("Change")),
+          ),
+        ),
+      ],
     );
   }
 

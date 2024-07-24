@@ -58,4 +58,9 @@ class Preferences {
   Future<void> setWholeDayTaskNotificationTime(TimeOfDay value) async =>
       await _prefs.setString('wholeDayTaskNotificationTime', "${value.hour}:${value.minute}");
 
+  String getTags() => _prefs.getString('tags') ?? "[]";
+
+  Future<void> setTags(String value) async =>
+      await _prefs.setString('tags', value);
+
 }

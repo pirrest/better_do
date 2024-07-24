@@ -14,12 +14,16 @@ class SettingsPage extends ConsumerWidget {
       ),
       body: const SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ThemeSettingWidget(),
-              SizedBox(height: 16),
-              NotificationsSettingsWidget(),
-            ],
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ThemeSettingWidget(),
+                SizedBox(height: 32),
+                NotificationsSettingsWidget(),
+              ],
+            ),
           ),
         ),
       ),

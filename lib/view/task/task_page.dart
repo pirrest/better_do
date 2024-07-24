@@ -3,11 +3,11 @@ import 'package:better_do/providers/tasks.dart';
 import 'package:better_do/repositories/preferences.dart';
 import 'package:better_do/view/task/due_date_form_field.dart';
 import 'package:better_do/view/task/due_time_form_field.dart';
+import 'package:better_do/view/task/tags_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:provider/provider.dart' as p;
 
 class TaskPage extends HookConsumerWidget {
   const TaskPage({super.key});
@@ -79,6 +79,10 @@ class TaskPage extends HookConsumerWidget {
                             task = task!.copyWith(dueDate: date, isFullDay: isFullDay);
                           },
                         ),
+                        const SizedBox(height: 8),
+                        TagsFormField(tags: [...task!.tags], onSelect: (tags) {
+                          task = task!.copyWith(tags:tags);
+                        },),
                       ],
                     ),
                   ),

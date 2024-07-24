@@ -47,6 +47,7 @@ dependencies:
   intl: any
   flutter_local_notifications: ^17.2.1+2
   flutter_timezone: ^2.1.0
+  collection:
 
 dev_dependencies:
   custom_lint:

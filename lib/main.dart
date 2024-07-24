@@ -98,29 +98,27 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
           });
         },
         selectedIndex: _selectedIndex,
-        destinations: [
-          const NavigationDestination(
+        destinations: const [
+          NavigationDestination(
             icon: Icon(CupertinoIcons.checkmark_square),
             label: "Tasks",
           ),
-          const NavigationDestination(
+          NavigationDestination(
             icon: Icon(CupertinoIcons.list_number),
             label: "To do",
           ),
           NavigationDestination(
-            icon: const Icon(
+            icon: Icon(
               CupertinoIcons.add_circled,
               color: Colors.blueAccent,
             ),
-            label: _selectedIndex == HomePageTab.tags.index
-                ? "Add tag"
-                : "Add task",
+            label: "",
           ),
-          const NavigationDestination(
+          NavigationDestination(
             icon: Icon(CupertinoIcons.tag),
             label: "Tags",
           ),
-          const NavigationDestination(
+          NavigationDestination(
             icon: Icon(CupertinoIcons.settings),
             label: "Settings",
           ),

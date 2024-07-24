@@ -21,10 +21,18 @@ class _TasksPageState extends ConsumerState<TasksPage> {
   Widget build(BuildContext context) {
     final tasks = ref.watch(tasksProvider);
     final hasTasks = tasks.isNotEmpty;
-
     itemBuilder(BuildContext context, int index) {
       final task = tasks[index];
-      final formatter = task.isFullDay ? DateFormat("EEE, dd MMMM yyyy") : DateFormat("EEE, dd MMMM yyyy, hh:mm");
+      final formatter = task.isFullDay
+          ? DateFormat("EEE, dd MMMM yyyy")
+          : DateFormat("EEE, dd MMMM yyyy, hh:mm");
+      final dueDateStr = task.dueDate != null ? formatter.format(task.dueDate!) : "";
+      final tagsStr =                 task.tags
+          .map(
+            (e) => "#${e.name}",
+      )
+          .join(", ");
+      final subtitle = [if(dueDateStr.isNotEmpty)dueDateStr, tagsStr].join("\n");
       return GestureDetector(
         key: ValueKey(task),
         onTap: () {
@@ -33,7 +41,8 @@ class _TasksPageState extends ConsumerState<TasksPage> {
         },
         child: ListTile(
           leading: _isEditable
-              ? const SizedBox(width:48, height:48, child: Icon(Icons.drag_handle_rounded))
+              ? const SizedBox(
+                  width: 48, height: 48, child: Icon(Icons.drag_handle_rounded))
               : Checkbox(
                   value: task.isDone,
                   onChanged: (value) {
@@ -45,7 +54,11 @@ class _TasksPageState extends ConsumerState<TasksPage> {
             task.text,
             overflow: TextOverflow.ellipsis,
           ),
-          subtitle: task.dueDate != null ? Text(formatter.format(task.dueDate!)) : null,
+          subtitle:               Text(
+            subtitle,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+          ),
           horizontalTitleGap: 0,
           trailing: _isEditable
               ? IconButton(
@@ -75,31 +88,40 @@ class _TasksPageState extends ConsumerState<TasksPage> {
       appBar: AppBar(
         title: const Text("Tasks"),
         actions: [
-          if(hasTasks)
-          TextButton(
-              onPressed: () {
-                setState(() {
-                  _isEditable = !_isEditable;
-                });
-              },
-              child: _isEditable ? const Text("Done") : const Text("Edit"))
+          if (hasTasks)
+            TextButton(
+                onPressed: () {
+                  setState(() {
+                    _isEditable = !_isEditable;
+                  });
+                },
+                child: _isEditable ? const Text("Done") : const Text("Edit"))
         ],
       ),
       body: SafeArea(
-        child: hasTasks ? (_isEditable
-            ? ReorderableListView.builder(
-                itemCount: tasks.length,
-                itemBuilder: itemBuilder,
-                onReorder: (oldIndex, newIndex) {
-                  ref.read(tasksProvider.notifier).reorder(oldIndex, newIndex);
-                },
-              )
-            : ListView.builder(
-                itemCount: tasks.length,
-                itemBuilder: itemBuilder,
-              )) : Center(child: ElevatedButton(child: const Text("Add your first task"),onPressed: () {
-                addNewTask(context);
-              },),),
+        child: hasTasks
+            ? (_isEditable
+                ? ReorderableListView.builder(
+                    itemCount: tasks.length,
+                    itemBuilder: itemBuilder,
+                    onReorder: (oldIndex, newIndex) {
+                      ref
+                          .read(tasksProvider.notifier)
+                          .reorder(oldIndex, newIndex);
+                    },
+                  )
+                : ListView.builder(
+                    itemCount: tasks.length,
+                    itemBuilder: itemBuilder,
+                  ))
+            : Center(
+                child: ElevatedButton(
+                  child: const Text("Add your first task"),
+                  onPressed: () {
+                    addNewTask(context);
+                  },
+                ),
+              ),
       ),
     );
   }
