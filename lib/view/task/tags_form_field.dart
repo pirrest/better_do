@@ -41,7 +41,7 @@ class _TagsFormFieldState extends State<TagsFormField> {
                       Container(
                         padding: const EdgeInsetsDirectional.only(start: 16),
                         decoration: BoxDecoration(
-                          color: context.theme.indicatorColor,
+                          color: context.theme.highlightColor,
                           borderRadius: BorderRadius.circular(1000),
                         ),
                         child: Row(
